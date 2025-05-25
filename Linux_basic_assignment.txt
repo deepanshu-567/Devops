@@ -1,0 +1,123 @@
+[root@pcscluster01 ~]# cd /tmp
+
+[root@pcscluster01 tmp]# mkdir test_dir
+[root@pcscluster01 tmp]# cd test_dir
+[root@pcscluster01 test_dir]# pwd
+/tmp/test_dir
+[root@pcscluster01 test_dir]# touch example.txt
+[root@pcscluster01 test_dir]# ls
+example.txt
+[root@pcscluster01 test_dir]# mv example.txt renamed_example.txt
+[root@pcscluster01 test_dir]# ls
+renamed_example.txt
+[root@pcscluster01 test_dir]# pwd
+/tmp/test_dir
+[root@pcscluster01 test_dir]# date
+Sun May 25 08:38:24 AM IST 2025
+
+
+[root@pcscluster01 test_dir]# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+clevis:x:997:993:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+sssd:x:996:992:User for sssd:/:/sbin/nologin
+libstoragemgmt:x:995:991:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+setroubleshoot:x:994:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/sbin/nologin
+cockpit-ws:x:993:989:User for cockpit web service:/nonexisting:/sbin/nologin
+cockpit-wsinstance:x:992:988:User for cockpit-ws instances:/nonexisting:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+chrony:x:991:987::/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+systemd-oom:x:985:985:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+DC_Server_1:x:1000:1000::/home/DC_Server_1:/bin/bash
+DC_Server_2:x:1001:1001::/home/DC_Server_2:/bin/bash
+DC_Server_3:x:1002:1002::/home/DC_Server_3:/bin/bash
+omadmin:x:1003:1003::/home/omadmin:/bin/bash
+CyberArk_Admin_FA:x:1004:1004::/home/CyberArk_Admin_FA:/bin/bash
+nagios:x:1005:1005::/home/nagios:/bin/bash
+tpamadmin:x:1006:1006::/home/tpamadmin:/bin/bash
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+opc_op:x:777:177:OVO default operator:/home/opc_op:/bin/false
+[root@pcscluster01 test_dir]# head -5 /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+[root@pcscluster01 test_dir]# tail -5 /etc/passwd
+nagios:x:1005:1005::/home/nagios:/bin/bash
+tpamadmin:x:1006:1006::/home/tpamadmin:/bin/bash
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+opc_op:x:777:177:OVO default operator:/home/opc_op:/bin/false
+
+
+[root@pcscluster01 test_dir]# cat /etc/passwd | grep -i root
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+
+
+[root@pcscluster01 test_dir]# cd ..
+[root@pcscluster01 tmp]# zip test_dir.zip test_dir
+  adding: test_dir/ (stored 0%)
+[root@pcscluster01 tmp]# ls -ltrh test_dir.zip
+-rw-r--r--. 1 root root 168 May 25 08:44 test_dir.zip
+[root@pcscluster01 tmp]# mkdir unzipped_dir
+[root@pcscluster01 tmp]# ls | grep -i _dir
+test_dir
+test_dir.zip
+unzipped_dir
+[root@pcscluster01 tmp]# ls -ltrh | grep -i _dir
+drwxr-xr-x. 2 root    root      33 May 25 08:38 test_dir
+-rw-r--r--. 1 root    root     168 May 25 08:44 test_dir.zip
+drwxr-xr-x. 2 root    root       6 May 25 08:45 unzipped_dir
+[root@pcscluster01 tmp]# unzip test_dir.zip -d /tmp/unzipped_dir/
+Archive:  test_dir.zip
+   creating: /tmp/unzipped_dir/test_dir/
+[root@pcscluster01 tmp]# cd unzipped_dir/
+[root@pcscluster01 unzipped_dir]# ll
+total 0
+drwxr-xr-x. 2 root root 6 May 25 08:38 test_dir
+[root@pcscluster01 unzipped_dir]# date
+Sun May 25 08:49:08 AM IST 2025
+
+
+[root@pcscluster01 unzipped_dir]# wget https://example.com/sample.txt
+--2025-05-25 08:56:54--  https://example.com/sample.txt
+Resolving example.com (example.com)... failed: Name or service not known.
+wget: unable to resolve host address ‘example.com’
+
+
+[root@pcscluster01 unzipped_dir]# touch secure.txt
+[root@pcscluster01 unzipped_dir]# ls -ltrh
+total 0
+drwxr-xr-x. 2 root root 6 May 25 08:38 test_dir
+-rw-r--r--. 1 root root 0 May 25 08:57 secure.txt
+[root@pcscluster01 unzipped_dir]# chmod 444 secure.txt
+[root@pcscluster01 unzipped_dir]# ls -ltrh
+total 0
+drwxr-xr-x. 2 root root 6 May 25 08:38 test_dir
+-r--r--r--. 1 root root 0 May 25 08:57 secure.txt
+
+
+[root@pcscluster01 unzipped_dir]# export MY_VAR="Hello,Linux!"
+[root@pcscluster01 unzipped_dir]# echo $MY_VAR
+Hello,Linux!
+[root@pcscluster01 unzipped_dir]# date
+Sun May 25 09:05:51 AM IST 2025
